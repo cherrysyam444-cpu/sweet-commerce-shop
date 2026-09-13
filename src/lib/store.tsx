@@ -14,9 +14,10 @@ export type CartLine = {
   id: string;
   productId: string;
   quantity: number;
-  color?: string;
-  size?: string;
+  color?: string | undefined;
+  size?: string | undefined;
 };
+
 
 export type Address = {
   id: string;
@@ -143,13 +144,21 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     setState((prev) => {
       const key = `${productId}|${color ?? ""}|${size ?? ""}`;
       const existing = prev.cart.find((l) => `${l.productId}|${l.color ?? ""}|${l.size ?? ""}` === key);
+      const newLine: CartLine = {
+        id: `line-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+        productId,
+        quantity,
+        ...(color ? { color } : {}),
+        ...(size ? { size } : {}),
+      };
       const cart = existing
         ? prev.cart.map((l) => (l.id === existing.id ? { ...l, quantity: l.quantity + quantity } : l))
-        : [...prev.cart, { id: `line-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, productId, quantity, color, size }];
+        : [...prev.cart, newLine];
       return { ...prev, cart };
     });
     if (!silent && product) toast.success(`${product.name} added to your cart`);
   }, []);
+
 
   const setQuantity = useCallback<StoreValue["setQuantity"]>((lineId, quantity) => {
     setState((prev) => ({
