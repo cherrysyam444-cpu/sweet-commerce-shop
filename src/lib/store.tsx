@@ -83,7 +83,13 @@ type StoreValue = State & {
   totals: { subtotal: number; savings: number; shipping: number; tax: number; total: number };
   addToCart: (
     productId: string,
-    options?: { quantity?: number; color?: string; size?: string; silent?: boolean },
+    options?: {
+      quantity?: number | undefined;
+      color?: string | undefined;
+      size?: string | undefined;
+      silent?: boolean | undefined;
+    },
+
   ) => void;
   setQuantity: (lineId: string, quantity: number) => void;
   removeLine: (lineId: string) => void;
