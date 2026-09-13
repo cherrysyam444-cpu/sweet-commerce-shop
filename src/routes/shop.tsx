@@ -27,12 +27,15 @@ import {
   type Product,
 } from "@/lib/catalog";
 
-type Search = { q?: string; category?: string };
+type Search = { q?: string | undefined; category?: string | undefined };
 
 export const Route = createFileRoute("/shop")({
   validateSearch: (search: Record<string, unknown>): Search => ({
-    q: typeof search.q === "string" && search.q ? search.q : undefined,
-    category: typeof search.category === "string" && search.category ? search.category : undefined,
+    q: typeof search["q"] === "string" && search["q"] ? (search["q"] as string) : undefined,
+    category:
+      typeof search["category"] === "string" && search["category"]
+        ? (search["category"] as string)
+        : undefined,
   }),
   head: () => ({
     meta: [
@@ -67,7 +70,7 @@ function ShopPage() {
   const [query, setQuery] = useState(q ?? "");
   const [selectedCats, setSelectedCats] = useState<string[]>(category ? [category] : []);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
-  const [price, setPrice] = useState<number[]>([0, 1200]);
+  const [price, setPrice] = useState<[number, number]>([0, 1200]);
   const [minRating, setMinRating] = useState(0);
   const [minDiscount, setMinDiscount] = useState(0);
   const [sort, setSort] = useState<string>("popularity");
@@ -130,7 +133,7 @@ function ShopPage() {
           className="mt-5"
           value={price}
           onValueChange={(v) => {
-            setPrice(v);
+            setPrice([v[0] ?? 0, v[1] ?? 1200]);
             setVisible(PAGE);
           }}
           min={0}

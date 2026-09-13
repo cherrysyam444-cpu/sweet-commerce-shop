@@ -10,11 +10,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatPrice, getProduct } from "@/lib/catalog";
 import { useStore } from "@/lib/store";
 
-type Search = { tab?: string };
+type Search = { tab?: string | undefined };
 
 export const Route = createFileRoute("/account")({
   validateSearch: (search: Record<string, unknown>): Search => ({
-    tab: typeof search.tab === "string" && search.tab ? search.tab : undefined,
+    tab: typeof search["tab"] === "string" && search["tab"] ? (search["tab"] as string) : undefined,
   }),
   head: () => ({
     meta: [

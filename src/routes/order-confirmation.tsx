@@ -6,11 +6,14 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { formatPrice } from "@/lib/catalog";
 import { useStore } from "@/lib/store";
 
-type Search = { orderId?: string };
+type Search = { orderId?: string | undefined };
 
 export const Route = createFileRoute("/order-confirmation")({
   validateSearch: (search: Record<string, unknown>): Search => ({
-    orderId: typeof search.orderId === "string" && search.orderId ? search.orderId : undefined,
+    orderId:
+      typeof search["orderId"] === "string" && search["orderId"]
+        ? (search["orderId"] as string)
+        : undefined,
   }),
   head: () => ({
     meta: [

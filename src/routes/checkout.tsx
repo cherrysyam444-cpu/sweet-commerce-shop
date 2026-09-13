@@ -94,7 +94,7 @@ function CheckoutPage() {
         name: product.name,
         quantity: line.quantity,
         price: product.price,
-        image: product.images[0],
+        image: product.images[0] ?? "",
       })),
       address: `${form.name}, ${form.line1}, ${form.city} ${form.postcode}, ${form.country}`,
       payment: payments.find((p) => p.id === form.payment)?.label ?? "Card",
