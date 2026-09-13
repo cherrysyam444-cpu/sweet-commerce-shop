@@ -4,10 +4,10 @@
 - [x] Header, footer, product card, home page
 - [x] Shop catalogue with filters/sort/load more
 - [x] Product detail page
-- [ ] Cart, wishlist pages
-- [ ] Multi-step checkout + order confirmation
-- [ ] Account dashboard (profile, orders, wishlist, addresses, settings)
-- [ ] Deals page with countdown, categories index + category pages
-- [ ] About, contact pages
-- [ ] Fix exactOptionalPropertyTypes error in src/lib/store.tsx (CartLine optional color/size)
-- [ ] Run build/typecheck and clear all errors
+- [x] Cart, wishlist pages
+- [x] Multi-step checkout + order confirmation
+- [x] Account dashboard (profile, orders, wishlist, addresses, settings)
+- [x] Deals page with countdown, categories index + category pages
+- [x] About, contact pages
+- [x] Fix exactOptionalPropertyTypes error in src/lib/store.tsx (CartLine optional color/size)
+- [x] Run build/typecheck and clear all errors
