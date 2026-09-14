@@ -687,7 +687,7 @@ export const deals = products
 export const trending = products.slice().sort((a, b) => b.popularity - a.popularity).slice(0, 8);
 
 export const formatPrice = (value: number) =>
-  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0 })
+  new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", minimumFractionDigits: 0 })
     .format(value);
 
 export const searchProducts = (list: Product[], query: string) => {
